@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    padding: 20px;
+    overflow: auto;
+}
+
+/* --- NAVIGASI --- */
+nav {
+    width: 100%;
+    background-color: transparent;
+    overflow: auto;
+}
+
+nav li {
+    display: inline;
+    list-style-type: none;
+    margin-right: 25px;
+}
+
+nav a {
+    float: left;
+    text-align: center;
+    padding: 12px;
+    color: black;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    background-color: blue;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* --- TATA LETAK & GRID --- */
+#content {
+    float: left;
+    width: 100%; /* Ubah ke 100% agar grid punya ruang penuh */
+    padding-left: 0;
+}
+
+/* Pembungkus utama grid 2x2 */
+.container-grid, .image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+/* --- GAMBAR & KARTU --- */
+.cover-image {
+    width: 100%;
+    max-height: 900px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
+}
+
+.featured-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* --- LINK & TOMBOL KARTU --- */
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card-link:hover .card {
+    transform: translateY(-5px);
+    transition: transform 0.2s ease;
+}
+
+.btn-buka {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btn-buka:hover {
+    background-color: #0056b3;
+}
+
+/* --- FOOTER --- */
+footer {
+    padding: 20px;
+    color: black;
+    background-color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* --- RESPONSIF HP --- */
+@media screen and (max-width: 768px) {
+    .container-grid, .image-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+}
