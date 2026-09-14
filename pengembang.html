@@ -4,73 +4,321 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Pengembang - PAI SD</title>
-    <link rel="stylesheet" href="style/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8f5e9;
+            color: #333;
+        }
+
+        /* --- NAVIGASI --- */
+        header {
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+
+        nav a {
+            color: #2e7d32;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #4CAF50;
+        }
+
+        /* --- CONTAINER UTAMA --- */
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* --- KARTU PROFIL INTERAKTIF --- */
+        .profile-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            position: relative;
+        }
+
+        .avatar-box {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin: 0 auto 15px auto;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #4CAF50;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .avatar-img:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .dev-name {
+            margin: 5px 0;
+            color: #2e7d32;
+            font-size: 24px;
+        }
+
+        .dev-role {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* --- STATISTIK / BADGE --- */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .stat-item {
+            background-color: #f4fbf7;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #c8e6c9;
+            transition: transform 0.2s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-3px);
+            background-color: #e8f5e9;
+        }
+
+        .stat-number {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2e7d32;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #555;
+        }
+
+        /* --- SISTEM TAB INTERAKTIF --- */
+        .tab-menu {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            text-align: left;
+            line-height: 1.6;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- TOMBOL KONTAK (PUSH BUTTON) --- */
+        .contact-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .btn-contact {
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+            box-shadow: 0 4px 0 rgba(0,0,0,0.2);
+            transition: all 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-wa { background-color: #25D366; box-shadow: 0 4px 0 #1da851; }
+        .btn-wa:active { transform: translateY(3px); box-shadow: 0 1px 0 #1da851; }
+
+        .btn-email { background-color: #007bff; box-shadow: 0 4px 0 #0056b3; }
+        .btn-email:active { transform: translateY(3px); box-shadow: 0 1px 0 #0056b3; }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-weight: bold;
+            color: #666;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .contact-buttons { flex-direction: column; }
+        }
+    </style>
 </head>
 <body>
+
     <header>
         <nav>
-            <ul>
-                <li><a href="index.html">← Beranda</a></li>
-                <li><a href="#biografi">Biografi</a></li>
-                <li><a href="#kontak">Kontak</a></li>
-                <li><a href="#album">Album Kegiatan</a></li>
-            </ul>
+            <a href="index.html">← Kembali ke Beranda</a>
         </nav>
     </header>
 
     <main>
-        <!-- Profil & Biografi -->
-        <div class="card" id="biografi">
-            <div style="text-align: center; margin-bottom: 20px;">
-                <!-- Pastikan nama file foto di bawah sesuai dengan nama foto di folder gambar -->
-                <img src="gambar/foto-pengembang.png" alt="Foto Erli Tarona Putra" style="width: 180px; height: 180px; border-radius: 50%; object-fit: cover; box-shadow: 0 4px 8px rgba(0,0,0,0.15);">
-                <h2>Erli Tarona Putra, S.Pd.I., M.Pd</h2>
-                <p><strong>Pengembang Media Pembelajaran PAI SD</strong></p>
-            </div>
-            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-            <h3>Biografi</h3>
-            <p>Halo! Saya adalah seorang pendidik dan pengembang media pembelajaran digital yang berfokus pada mata pelajaran Pendidikan Agama Islam dan Budi Pekerti (PAI) tingkat Sekolah Dasar. Website ini dikembangkan untuk memudahkan guru dan siswa dalam mengakses bahan ajar, modul, serta media pembelajaran interaktif sesuai Kurikulum Merdeka.</p>
-        </div>
-
-        <!-- Kontak -->
-        <div class="card" id="kontak" style="margin-top: 20px;">
-            <h3>Kontak Pengembang</h3>
-            <p>Jika ada pertanyaan, saran, atau kolaborasi, silakan hubungi saya melalui:</p>
-            <ul style="list-style-type: none; padding-left: 0; line-height: 2;">
-                <li>📧 <strong>Email:</strong> tarona.putra@gmail.com</li>
-                <li>📱 <strong>WhatsApp:</strong> 0853 6004 0020</li>
-                <li>📍 <strong>Instansi/Sekolah:</strong> SDN 2 Peureulak</li>
-            </ul>
-        </div>
-
-        <!-- Album Foto Kegiatan -->
-        <div class="card" id="album" style="margin-top: 20px;">
-            <h3>Album Foto Kegiatan</h3>
-            <p>Dokumentasi kegiatan pembelajaran dan pengembangan media PAI SD:</p>
+        <div class="profile-card">
             
-            <div class="container-grid" style="margin-top: 15px;">
-                <div>
-                    <img src="gambar/kegiatan1.png" class="featured-image" alt="Kegiatan 1">
-                    <p style="text-align: center; font-size: 14px; margin-top: 5px;">Workshop Pembelajaran Digital</p>
+            <!-- Foto Pengembang -->
+            <div class="avatar-box">
+                <img src="gambar/putrafoto.png" alt="Foto Pengembang" class="avatar-img">
+            </div>
+
+            <!-- Nama & Peran -->
+            <h1 class="dev-name">Tarona Putra, S.Pd.I.,M.Pd</h1>
+            <p class="dev-role">Guru & Pengembang Media Pembelajaran Digital PAI SD</p>
+
+            <!-- Ringkasan Poin/Pencapaian -->
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">6 Kelas</span>
+                    <span class="stat-label">Kelas 1 hingga Kelas 6</span>
                 </div>
-                <div>
-                    <img src="gambar/kegiatan2.png" class="featured-image" alt="Kegiatan 2">
-                    <p style="text-align: center; font-size: 14px; margin-top: 5px;">Kegiatan Pembelajaran di Kelas</p>
+                <div class="stat-item">
+                    <span class="stat-number">48+ Modul</span>
+                    <span class="stat-label">Bahan & Perangkat Ajar</span>
                 </div>
-                <div>
-                    <img src="gambar/kegiatan3.png" class="featured-image" alt="Kegiatan 3">
-                    <p style="text-align: center; font-size: 14px; margin-top: 5px;">Sosialisasi Modul Ajar</p>
-                </div>
-                <div>
-                    <img src="gambar/kegiatan4.png" class="featured-image" alt="Kegiatan 4">
-                    <p style="text-align: center; font-size: 14px; margin-top: 5px;">Kuis Interaktif Bersama Siswa</p>
+                <div class="stat-item">
+                    <span class="stat-number">Interactive</span>
+                    <span class="stat-label">Integrasi G-Drive & Video</span>
                 </div>
             </div>
+
+            <!-- Tab Navigasi Konten -->
+            <div class="tab-menu">
+                <button class="tab-btn active" onclick="bukaTab(event, 'profil')">Profil Singkat</button>
+                <button class="tab-btn" onclick="bukaTab(event, 'visi')">Visi & Misi</button>
+                <button class="tab-btn" onclick="bukaTab(event, 'fitur')">Fitur Web</button>
+            </div>
+
+            <!-- Isi Tab 1: Profil -->
+            <div id="profil" class="tab-content active">
+                <p>Website ini dikembangkan sebagai sarana edukasi berbasis digital untuk mempermudah siswa SD dalam mempelajari Pendidikan Agama Islam dan Budi Pekerti secara menyenangkan, terstruktur, dan interaktif.</p>
+            </div>
+
+            <!-- Isi Tab 2: Visi Misi -->
+            <div id="visi" class="tab-content">
+                <ul>
+                    <li><strong>Visi:</strong> Mewujudkan pembelajaran PAI SD yang modern, menarik, dan mudah diakses dari mana saja.</li>
+                    <li><strong>Misi:</strong> Menyediakan materi Kurikulum Merdeka yang dikemas dengan visual anak-anak serta perangkat ajar yang terintegrasi bagi para guru PAI.</li>
+                </ul>
+            </div>
+
+            <!-- Isi Tab 3: Fitur Web -->
+            <div id="fitur" class="tab-content">
+                <ul>
+                    <li>Tampilan grid interaktif responsif (Desktop & Mobile).</li>
+                    <li>Penyimpanan materi langsung di Google Drive & video YouTube tanpa iklan luar.</li>
+                    <li>Sistem kuis interaktif (LMS) yang dapat diakses secara langsung.</li>
+                </ul>
+            </div>
+
+            <!-- Tombol Kontak Interaktif -->
+            <div class="contact-buttons">
+                <a href="https://wa.me/085360040020" target="_blank" class="btn-contact btn-wa">
+                    💬 Diskusi via WhatsApp
+                </a>
+                <a href="mailto:tarona.putra@gmail.com" class="btn-contact btn-email">
+                    ✉️ Kirim Email
+                </a>
+            </div>
+
         </div>
     </main>
 
     <footer>
         <p>Made with &#169; 2026 pembelajaran PAI SD</p>
     </footer>
+
+    <!-- JavaScript Interaktif untuk Tab -->
+    <script>
+        function bukaTab(evt, namaTab) {
+            var i, tabContent, tabBtn;
+            
+            // Sembunyikan semua isi tab
+            tabContent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+
+            // Hapus status aktif dari semua tombol tab
+            tabBtn = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tabBtn.length; i++) {
+                tabBtn[i].classList.remove("active");
+            }
+
+            // Tampilkan tab yang dipilih dan aktifkan tombolnya
+            document.getElementById(namaTab).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
 </body>
 </html>
